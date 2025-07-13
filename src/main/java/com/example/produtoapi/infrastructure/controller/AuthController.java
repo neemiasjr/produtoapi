@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +31,9 @@ public class AuthController {
         Optional<AppUser> userOpt = userRepository.findByUsername(request.getUsername());
         if (userOpt.isPresent() && userOpt.get().getPassword().equals(request.getPassword())) {
             String token = jwtUtil.generateToken(request.getUsername());
-            return ResponseEntity.ok().body("Bearer " + token);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", "Bearer " + token);
+            return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(401).body("Credenciais inválidas");
     }

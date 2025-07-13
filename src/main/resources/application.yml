@@ -16,6 +16,7 @@ spring:
     active: dev
 
   kafka:
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: produto-group
       auto-offset-reset: earliest

@@ -1,7 +1,11 @@
 package com.example.produtoapi.infrastructure.messaging;
 
 import com.example.produtoapi.domain.model.Produto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
+
+
 
 public class KafkaProdutoConsumer {
     @KafkaListener(topics = "produtos-criados", groupId = "produto-group")
